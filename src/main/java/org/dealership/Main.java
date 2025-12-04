@@ -9,8 +9,8 @@ import org.dealership.services.DataBase;
 public class Main {
     public static DataBase Database = null;
 
-    private static void startDatabase() {
-        Database = new DataBase("localhost", 3306, "dealerships", "root", "yearup");
+    private static void startDatabase(String[] args) {
+        Database = new DataBase("localhost", 3306, "dealerships", args[0], args[1]);
         Database.initalize("CREATE DATABASE IF NOT EXISTS dealerships");
         Database.initalize("""
                 CREATE TABLE IF NOT EXISTS dealership(
@@ -55,8 +55,8 @@ public class Main {
 
     }
     public
-    static void main() {
-        startDatabase();
+    static void main(String[] args) {
+        startDatabase(args);
         fillData();
 
         VehiclesDAO.allVehicles();
